@@ -1,0 +1,241 @@
+;[gain=1.0 name=CH_02 duration=300s fade=5s]
+#opll_mode 0
+#tempo 130
+#title { "Chrono Trigger クロノ・トリガー (C)SQUARE ENIX"}
+
+;#alloc {4=1200}
+;#alloc {5=1200}
+;#alloc {6=1200}
+;#alloc {7=1200}
+;#alloc {9=1200}
+;#alloc {a=1200}
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, adf[ffeeeddddeeeff] }
+@e2  = {1, 0, 9f=16,[ffeeeddddeeeff] }
+@e3  = {1, 0, fdb975310 }
+@e4  = {1, 0, defedcba }
+
+@e10 = {3,30, f8=64, 70=120 }
+@e11 = {2, 0, defd0=30 }
+
+@e20 = {0, 0, abcdef}
+@e25 = {0, 0, fe0=32}
+
+;* ティンパニ
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {12, 2,15, 4, 6, 4, 0, 3, 0, 1, 0, 0, 1
+             ,15, 4, 6, 4, 0, 0, 0, 1, 1, 1, 1}
+             
+; ストリングス (T_SAW(%X) * 32 + T_SAW(%X * 2) * 24 + T_SIN(%X * 4) * 32)
+@s00 = { C8E4F2EE DDCBC7D6 F10D1C17 06F4F0FF
+         E905130F FEECE8F7 122E3D38 27161120 }
+
+; T_TRIANGLE(%X) * 96 + T_SAW(%X) * 48
+;@s01 = { D0DFEEFD 0C1B2B3A 4940372E 251C130A
+;         02F9F0E7 DED5CCC3 BAC9D9E8 F7061524 }
+
+;123456789ABCDEFGH !
+;129ABCDEFGH !
+
+;#macro_offset A = 100
+
+;3456789ABCDEFGH r2
+
+*0 = {Y6,255 Y7,255}
+;*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+*1 = {Y14,32 Y39,0 Y23,171 Y40,1 Y24,192}
+
+4    @0 @e2 V7  O5 L8 H0,1,2,1
+5    @0 @e2 V7  O5 L8 H0,1,2,1 \1
+45   r4
+45   g1& g1 e1& e1
+45   a1& a1 f+1 g1
+
+4    @0 @e1 V7  O5 L8 HF
+5    @0 @e1 V7  O5 L8 HF \1
+45   [
+45     [[grrgrrrf+] [errerrre]]
+45     [errerrrd] [f+rrf+rrrg]
+45     errerrrg arrarrrg f+rr2f+r r2f+r16f+r16f+16f+16
+45   ]3
+4    @0 @e2 V7 O5 L8 HF
+5    @0 @e2 V7 O5 L8 HF \1
+45   [
+45     f+1 a1 f+1& f+1
+45     f+1 a1 b1&  b1
+45   ] >
+45   d1  d1  e1 e1
+45   f+1 f+1 e1
+
+6    @0 @e2 V7  O5 L16 H0,1,2,1
+7    @0 @e2 V7  O5 L16 H0,1,2,1 \1
+67   r4
+67   e1& e1 c+1& c+1
+67   e1& e1 d1&  d1
+
+6    @0 @e1 V7  O5 L8 HF
+7    @0 @e1 V7  O5 L8 HF \1
+67   [
+67     [[errerrrd]  [c+rrc+rrr<b>]]
+67     [crrcrrr<b>] [drrdrrrd] <
+67     brr>errre errerrre drr2dr r2dr16dr16d16d16
+67   ]3
+
+6    @0 @e2 V7  O5 L16 HF
+7    @0 @e2 V7  O5 L16 HF \1
+67   [
+67     d1 e1 d1&  d1
+67     d1 e1 | f+1& f+1
+67   ]
+
+6    @0 @e1 V7  O5 L16 HF
+7    @0 @e1 V7  O5 L16 HF \1
+67   [
+67     ereereererrrrrer ereereererrrrrer f+rf+f+rf+f+rf+rrrrrf+r f+rf+f+rf+f+rf+rf+rgrgr
+67   ] >
+67   bbr bbr bbr bbr bbr r1
+
+8    @0 @e2 V9  O5 L8 H0,1,2,1
+8    r4
+8    c1& c1< a1& a1>
+8    c1& c1< b1& b1
+
+8    @0 @e1 V9 O5 L8 HF
+8    [
+8      [[crrcrrr<a>] < [arrarrrf+] >] <
+8      [arrarrrf+] [brrbrrrb]
+8      grrgrrrb> crrcrrrc< arr2br r2br16br16b16b16>
+8    ]3
+
+8    @0 @e2 V9  O4 L8 HF
+8    [
+8      a1> c+1< a1& a1
+8      a1> c+1  | e1  d+1<
+8    ]
+
+8    @0 @e1 V9  O4 L16 HF
+8    [
+8      brbbrbbrbrrrrrbr brbbrbbrbrrrrrbr araaraararrrrrar araaraararararar
+8    ] >>
+8    aar aar aar aar aar r1
+
+9    @6 @e1 V12  O4 L16 H0,1,2,1
+A    @0 @e1 V15  O4 L16 H0,1,2,1 \1
+9A   r4
+9A   b1>  e2a2           b2>e2 a2b2> c1
+9A   d2e2 f+8.g8.f+d<b2& b2..
+
+9    @5 @e0 V13 O4 L16 H20,1,2,2
+A    @6 @e0 V11 O4 L16 H20,1,2,2 \1
+9A   b8>
+9A   [
+9A     e8.f+8.g8<b8.>f+8.d8& d2r8<ab>ea8. b8rb8.ag+e2& e2&e8r4<b8>
+9A     e8.f+8.g8<b8.>f+8.d8& d2r8<ab>ea8. b8rb8.ag+e2& e2&e8r4ef+
+9A     g2a2 b4.>c8.rc8.r32c+32&d8& drd8.rc+c<b2& b2.r8d8
+9A     e2g2 a2g2 SO f+ef+rr2f+ef+r | r2.. SF <b8>
+9A   ]3
+
+9    @6 @e1 V12  O5 L16 H0,1,2,1
+A    @0 @e1 V15  O5 L16 H0,1,2,1 \1
+9A   r2 SF a8.b8>ea8
+9A   [
+9A     b2..ag   f+2d2    c+8.d8.a2&a8& a1
+9A     b2.a8b8> c+2d2< | b1&           b2<a8.b8>ea8
+9A   ]
+9    @5 @e0 V13 O6 L16 H20,1,2,2
+A    @6 @e0 V11 O6 L16 H20,1,2,2 \1
+9A   e2..de< b8.a8.b8e4&eref+ g8.a8.gf+e8.d8.<b8& b1
+9A   r8 SO ab>cd8e8.f+8g8a8 b8.e8.>d4c4<b>c< b8.a8.g8a2& a4r4g4f+4
+9A   f+8.g8.f+8d8.<b8.> e8 r1
+
+B    @9  V13 O3 L8 H0,1,0,4
+C    @15 V15 O3 L8 H0,1,0,4 \5
+BC   re<
+BC   [arrarrra] >      f+rrf+rrrc+ f+rrf+rrrf+
+BC   frrfrrrc frrfrrrf errerrr<b>  errerrre<
+
+BC   [
+BC     [arrarrr>e< arrarrr>e f+rrf+rrrc+ f+rrf+rrrf+ | <]
+BC     frrfrrrc frrfrrrf errerrr<b> errerrre
+BC     crrcrrrc frrfrrrf r4.<a16a16a8r8r4 a16a16a8 r4>e8e16e<a16a16a16
+BC   ]3
+
+BC   [r1]14
+
+B    @9  V13 O3 L8 H0,1,0,4
+C    @15 V15 O3 L8 H0,1,0,4 \5
+BC   [
+BC     crr2gr c.c.c16c16crrc drr2ar drrd16d16ddaa
+BC   ]
+BC   e16e e16e e16e e16e e16e r1
+
+D    @11 Q8 V12 L32 O5
+D    r4
+D    [r1]4
+D    [r1]3 ef+gab>def< ab>def+gab def+gab>de< gab>def+ga<<
+
+D    [
+D      [r1]15 ef+gab>def< ab>def+gab def+gab>de< gab>def+ga<<
+D    ]3
+
+D    @11 @e4 Q8 V12 L8 O5
+D    [
+D      b>f+ef+bf+ef+< b>f+ef+af+ef+  [c+dc+dadc+d]<
+D      b>f+ef+bf+ef+< a>ec+eaec+e |  <b>f+ef+bf+ef+< b>f+d+f+< Q4 b>f+ef+< Q8
+D    ]
+D    [[babe]2]8
+
+E    @13 V15 O2 L16
+E    r4
+E    [a8r8a8a8r8a8a4] [f+8r8f+8f+8r8f+8f+4]
+E    [f8r8f8f8r8f8f4] [e8r8e8e8r8e8e4]
+
+E    [
+E      [[a8r8a8a8r8a8a4] [f+8r8f+8f+8r8f+8f+4]]
+E      [f8r8f8f8r8f8f4] [e8r8e8e8r8e8e4]
+E      c8r8c8c8r8c8c4 f+8r8f+8f+8r8f+8f+4 [e8r8e8e8r8e8e4]
+E    ]3
+
+E    [
+E      g1 a1    b1& b2a2
+E      g1 f+1 | b1& b2a2
+E    ]
+E    [c8.g8.>c8<c2 c8.g8.>c8<c4g4 d8.a8.>d8<d2 d8.a8.>d8e8d8<a8d8]
+E    ee8 ee8 ee8 ee8 ee8 r1
+
+F *1 @14      V14 O4 L16 \-20 H0,20,0,-30
+G    @7  @e25 V12 O1 L16 Q1 SO
+FG   V-4 [c64c64c64c64 V+]4
+FG   [
+FG     crcrcccrcrccrV-2cccV+2 crcrV-2[c64]8V+2crcrccrV-2cccV+2 cccrcccrcrccrV-2cccV+2 crcrV-2[c64]8V+2crcrccrV-2cccV+2
+FG   ]
+
+FG   [
+FG     [
+FG       crcrcccrcrccrV-2cccV+2 crcrV-2[c64]8V+2crcrccrV-2cccV+2 | cccrcccrcrccrV-2cccV+2 crcrV-2[c64]8V+2crcrccrV-2cccV+2
+FG     ]4
+FG     cccrr2cccr r2 V-4 [c64c64c64c64 V+]4 cccr
+FG   ]3
+
+FG   [r1]12
+FG   V-6 [crrr V+]6 crcrcrcc
+FG   [
+FG     crcc rccc crcr V-2[c64]8V+2 cc  [crccrccr crcrcrcc] crccrccccrcr V-2[c64]4V+2 ccc
+FG   ]
+FG   ccr ccr ccr ccr ccr r1
+
+3    @e10 V12 O8 L16
+3    r4
+3    f+1 [r1]7
+
+3    [
+3      f+1 [r1]7
+3      [r1]6 f+2.f+4 r1
+3    ]3
+
+3    f+2 @e11 V-1 [c8cc]2 [[c8cc]4]11
+3    [r1]10
+3    @e10 V12 O8
+3    f+2f+4.f+2
+
